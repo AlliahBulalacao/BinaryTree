@@ -95,6 +95,44 @@ class BinarySearchTreeNode:
 
         return self
 
+    def min(self):
+        if self.left is None:
+            return self.data
+        return self.left.min()
+
+    def max(self):
+        if self.right is None:
+            return self.data
+        return self.right.max()
+
+def build_tree(elements):
+    print("Full Name: ", elements)
+    root = BinarySearchTreeNode(elements[0])
+
+    for i in range(1, len(elements)):
+        root.add_child(elements[i])
+
+    return root
+
+if __name__ =='__main__':
+    fullname = ['A', 'L', 'L', 'I', 'A', 'H', 'M', 'A', 'E', 'B.', 'B', 'U', 'L', 'A', 'L', 'A', 'C', 'A','O']
+    binary_name = build_tree(fullname)
+
+    print("Sorted Order: ", binary_name.in_order_traversal())
+    print("Post-Order: ", binary_name.post_order_traversal())
+    print("Pre-Order: ", binary_name.pre_order_traversal())
+    print("Minimum value on the list: ", binary_name.min())
+    print("Maximum value on the list: ", binary_name.max())
+
+    ask = input("\nDo you want to delete letter A from the list? (Y/N) ")
+    if ask == 'Y':
+        ans = input("What letter do you want to delete? ")
+        print("The", ans, "have now deleted")
+        binary_name.delete(ans)
+        print("New list: ", binary_name.in_order_traversal())
+
+
+
 
 
 
